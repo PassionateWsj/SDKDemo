@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="44dp"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/TitleStyle"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:id="@+id/tv_baseUI_back"
+            style="@style/BackStyle"/>
+
+        <LinearLayout
+            android:id="@+id/ll_baseUI_title_RightView"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/nav_more"
+            android:onClick="launchDropMenuActivity"
+            android:orientation="horizontal"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/tv_baseUI_title"
+            style="@style/TitleText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/ll_baseUI_title_RightView"
+            android:layout_toRightOf="@id/tv_baseUI_back"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="报表"/>
+    </RelativeLayout>
+</LinearLayout>

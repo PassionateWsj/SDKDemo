@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.intfocus.syptemplatev1">
+
+    <application>
+        <activity
+            android:name="com.intfocus.syptemplatev1.TemplateOneLibraryActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:name="com.intfocus.syptemplatev1.TemplateOne_SubTableActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"/>
+    </application>
+</manifest>

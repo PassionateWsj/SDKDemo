@@ -1,0 +1,17 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+/.gradle/
+/.idea/
+/build/
+/SDKDemo.iml
+/app/build/
+/app/app.iml
+/syptemplatev1/build/
+/syptemplatev1/syptemplatev1.iml
