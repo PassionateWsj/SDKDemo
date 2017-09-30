@@ -191,6 +191,11 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
     private void drawAxesLine(Canvas canvas, Paint paint) {
         // X
         canvas.drawLine(xPoint - barWidth, yPoint, this.getWidth(), yPoint, paint);
+        // 零刻度
+        if (Float.parseFloat(yLabel[0]) < 0) {
+            canvas.drawLine(xPoint - barWidth, toY(-Float.parseFloat(yLabel[0])), this.getWidth(), toY(-Float.parseFloat(yLabel[0])), paint);
+        }
+
     }
 
     /**
@@ -267,6 +272,7 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
         int xsize = xLabel.length;
         int dsize = data.length;
         int loopingcont = xsize > dsize ? dsize : xsize;
+
         for (int i = 0; i < loopingcont; i++) {
             if (data[i] == 0f) {
                 continue;
@@ -284,13 +290,14 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
         }
         canvas.drawPath(path, paint);
 
+
         if (ratio == 1) {
             for (int i = 0; i < loopingcont; i++) {
                 float yPointCircle;
-                if (i == 0)
-                    yPointCircle = toY(data[0] - Float.parseFloat(yLabel[0]));
-                else
-                    yPointCircle = toY(data[i] - Float.parseFloat(yLabel[0]));
+//                if (i == 0)
+//                    yPointCircle = toY(data[0] - Float.parseFloat(yLabel[0]));
+//                else
+                yPointCircle = toY(data[i] - Float.parseFloat(yLabel[0]));
 
                 if (i == selectItem && data[i] != 0) {
                     paint_circle.setColor(drawColor);

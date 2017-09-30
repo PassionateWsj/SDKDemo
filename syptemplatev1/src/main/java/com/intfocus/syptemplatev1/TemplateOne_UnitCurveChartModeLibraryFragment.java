@@ -164,6 +164,9 @@ public class TemplateOne_UnitCurveChartModeLibraryFragment extends BaseModeLibra
         Collections.sort(seriesA);
         YMaxValue = seriesA.get(seriesA.size() - 1).intValue();
         YMinValue = seriesA.get(0).intValue();
+        if (YMinValue > 0) {
+            YMinValue = 0;
+        }
         YIntervalValue = Math.abs(YMaxValue - YMinValue);
         while (YIntervalValue % 4 != 0)
             YIntervalValue++;
