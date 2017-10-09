@@ -11,6 +11,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -79,6 +80,7 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
     public interface ChartStyle {
         int BAR = 1;
         int LINE = 2;
+        int LINE_BAR = 2;
     }
 
     private int mChartStyle = ChartStyle.BAR;
@@ -176,8 +178,12 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
 
             if (mChartStyle == ChartStyle.LINE)
                 drawLine(canvas, paintCurve, dataList.get(i), color);
-            else
+            else if (mChartStyle == ChartStyle.BAR)
                 drawBAR(canvas, i, color);
+            else {
+                drawLine(canvas, paintCurve, dataList.get(i), color);
+                drawBAR(canvas, i, color);
+            }
         }
     }
 
@@ -329,12 +335,20 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
         float right;
         float bottom;
         for (int i = 0; i < loopingcont; i++) {
+            float yPoint = toY(-Float.parseFloat(yLabel[0]));
             float startX = xPoint + i * xScale;
             left = startX - offset + (dataIndex * barWidth);
-            top = toY(data[i]) * (1 + (1 - ratio));
-
             right = startX + offset + (dataIndex * barWidth);
-            bottom = yPoint;
+
+            if (data[i] < 0) {
+                top = yPoint;
+                bottom = toY(data[i] - Float.parseFloat(yLabel[0])) * (1 + (1 - ratio));
+                Log.i("hjjzz", "数据 负 ：ratio " + ratio);
+            } else {
+                top = toY(data[i] - Float.parseFloat(yLabel[0])) * (1 + (1 - ratio));
+                bottom = yPoint;
+                Log.i("hjjzz", "数据 正 ：ratio " + ratio);
+            }
 
             RectF rectF = new RectF(left, top, right, bottom);
             if (i == selectItem) {
