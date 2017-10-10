@@ -190,27 +190,27 @@ public class TemplateOne_UnitCurveChartModeLibraryFragment extends BaseModeLibra
                 JSONObject jsonObject = array.getJSONObject(0);
                 String unit = jsonObject.getString("name");
                 chart = new CustomCurveChartV2(act);
-                chart.setBarWidth(40);
+                chart.setBarWidth(25);
                 chart.setxLabel(xLabel);
                 chart.setyLabel(yLabel);
                 chart.setUnit(unit);
                 chart.setColorList(color);
                 int selectItem = chart.setDataList(seriesLables);
-                chart.setDefauteolor(getResources().getColor(R.color.co9));
-                chart.setDefauteMargin((int) margin);
+                chart.setDefaultColor(getResources().getColor(R.color.co9));
+                chart.setDefaultMargin((int) margin);
                 chart.setPointClickListener(TemplateOne_UnitCurveChartModeLibraryFragment.this);
-                int chartStytle;
+                int chartStyle;
                 switch (chartType) {
                     case "line":
-                        chartStytle = CustomCurveChartV2.ChartStyle.BAR;
+                       chartStyle = CustomCurveChartV2.ChartStyle.LINE_BAR;
                         break;
                     case "bar":
-                        chartStytle = CustomCurveChartV2.ChartStyle.BAR;
+                        chartStyle = CustomCurveChartV2.ChartStyle.BAR;
                         break;
                     default:
-                        chartStytle = CustomCurveChartV2.ChartStyle.LINE;
+                        chartStyle = CustomCurveChartV2.ChartStyle.LINE;
                 }
-                chart.setCharStytle(chartStytle);
+                chart.setCharStyle(chartStyle);
                 onPointClick(selectItem);
                 ll_curvechart.addView(chart);
             } catch (Exception e) {
