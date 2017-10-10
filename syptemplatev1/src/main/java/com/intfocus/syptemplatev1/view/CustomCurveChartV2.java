@@ -129,7 +129,7 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
      */
     public void init() {
         paintAxes = new Paint();
-        paintAxes.setStyle(Paint.Style.STROKE);
+        paintAxes.setStyle(Paint.Style.FILL);
         paintAxes.setAntiAlias(true);
         paintAxes.setDither(true);
         paintAxes.setColor(defaultColor);
@@ -171,7 +171,8 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
         drawTopLine(canvas, paintAxes);
         drawAxesLine(canvas, paintAxes);
         drawCoordinate(canvas, paintCoordinate);
-        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+//        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        setLayerType(View.LAYER_TYPE_HARDWARE, null);
         paintCurve.clearShadowLayer();
 
         for (int i = 0; i < dataList.size(); i++) {
@@ -183,13 +184,14 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
 
             if (mChartStyle == ChartStyle.LINE)
                 drawLine(canvas, paintCurve, i, color);
-            else if (mChartStyle == ChartStyle.BAR )
+            else if (mChartStyle == ChartStyle.BAR)
                 drawBAR(canvas, i, color);
             else if (mChartStyle == ChartStyle.LINE_BAR) {
                 drawBAR(canvas, i, color);
                 drawLine(canvas, paintCurve, i, color);
             }
         }
+
 //        if (mChartStyle == ChartStyle.LINE_BAR) {
 //            for (int i = 0; i < dataList.size(); i++) {
 //                int color;
@@ -248,10 +250,11 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
                         color = getRelativeColor(colorList[i]);
                 }
             }
-
             paint.setColor(color);
 //            canvas.drawText(xLabel[i], startX, this.getHeight() - padding / 2 - textSize / 2, paint);
-            canvas.drawText(xLabel[i], startX, yPoint - paint.getFontMetrics().top, paint);
+            if (i == 0 || i == xlength - 1) {
+                canvas.drawText(xLabel[i], startX, yPoint - paint.getFontMetrics().top, paint);
+            }
             xpoints.add(startX);
         }
 
