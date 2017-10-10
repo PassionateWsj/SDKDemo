@@ -202,10 +202,13 @@ public class TemplateOne_UnitCurveChartModeLibraryFragment extends BaseModeLibra
                 int chartStyle;
                 switch (chartType) {
                     case "line":
-                       chartStyle = CustomCurveChartV2.ChartStyle.LINE_BAR;
+                       chartStyle = CustomCurveChartV2.ChartStyle.LINE;
                         break;
                     case "bar":
                         chartStyle = CustomCurveChartV2.ChartStyle.BAR;
+                        break;
+                    case "line_bar":
+                        chartStyle = CustomCurveChartV2.ChartStyle.LINE_BAR;
                         break;
                     default:
                         chartStyle = CustomCurveChartV2.ChartStyle.LINE;

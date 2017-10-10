@@ -321,24 +321,24 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
         canvas.drawPath(path, paint);
 
 
-//        if (ratio == 1) {
-//            for (int i = 0; i < loopingcont; i++) {
-//                float yPointCircle;
-//                if (i == 0)
-//                    yPointCircle = toY(data[0] - Float.parseFloat(yLabel[0]));
-//                else
-//                yPointCircle = toY(data[i] - Float.parseFloat(yLabel[0]));
-//
-//                if (i == selectItem && data[i] != 0) {
-//                    paint_circle.setColor(drawColor);
-//                    paint_circle.setAlpha(26);
-//                    canvas.drawCircle(xPointLine + i * xScale, yPointCircle, dipToPx(6f), paint_circle);
-//                    paint_circle.setColor(drawColor);
-//                    canvas.drawCircle(xPointLine + i * xScale, yPointCircle, dipToPx(3.6f), paint_circle);
-//                    canvas.drawCircle(xPointLine + i * xScale, yPointCircle, dipToPx(2f), paint_broken);
-//                }
-//            }
-//        }
+        if (ratio == 1 && mChartStyle != ChartStyle.LINE_BAR) {
+            for (int i = 0; i < loopingcont; i++) {
+                float yPointCircle;
+                if (i == 0)
+                    yPointCircle = toY(data[0] - Float.parseFloat(yLabel[0]));
+                else
+                    yPointCircle = toY(data[i] - Float.parseFloat(yLabel[0]));
+
+                if (i == selectItem && data[i] != 0) {
+                    paint_circle.setColor(drawColor);
+                    paint_circle.setAlpha(26);
+                    canvas.drawCircle(xPointLine + i * xScale, yPointCircle, dipToPx(6f), paint_circle);
+                    paint_circle.setColor(drawColor);
+                    canvas.drawCircle(xPointLine + i * xScale, yPointCircle, dipToPx(3.6f), paint_circle);
+                    canvas.drawCircle(xPointLine + i * xScale, yPointCircle, dipToPx(2f), paint_broken);
+                }
+            }
+        }
     }
 
     /**
