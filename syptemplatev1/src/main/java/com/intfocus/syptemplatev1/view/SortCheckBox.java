@@ -3,13 +3,13 @@ package com.intfocus.syptemplatev1.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -17,9 +17,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.intfocus.syptemplatev1.utils.DisplayUtil;
-
 import com.intfocus.syptemplatev1.R;
+import com.intfocus.syptemplatev1.utils.DisplayUtil;
 
 /**
  * 排序按钮
@@ -112,7 +111,7 @@ public class SortCheckBox extends View {
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.LEFT);
 
-        mBitmap = BitmapFactory.decodeResource(getResources(), sort_noneicon);
+//        mBitmap = BitmapFactory.decodeResource(getResources(), sort_noneicon);
     }
 
     private void initAttrs(AttributeSet attrs) {
@@ -154,7 +153,8 @@ public class SortCheckBox extends View {
         textWidth = rect.width();
         textHeight = rect.height();
 
-        int bitmapW = mBitmap.getWidth();
+//        int bitmapW = mBitmap.getWidth();
+        int bitmapW = 0;
         int width;
 
         if (boxWidth != 0) {
@@ -176,7 +176,10 @@ public class SortCheckBox extends View {
     public void reset() {
         ischecked = false;
         checkedState = CheckedState.sort_noneicon;
-        mBitmap = BitmapFactory.decodeResource(getResources(), sort_noneicon);
+        textColor = ContextCompat.getColor(ctx, R.color.co6_syr);
+        //        mBitmap = BitmapFactory.decodeResource(getResources(), sort_noneicon);
+        //        initPaint();
+        mTextPaint.setColor(textColor);
         invalidate();
     }
 
@@ -191,14 +194,18 @@ public class SortCheckBox extends View {
             mClickListener.onClick(this);
 
         if (isChecked) {
-            mBitmap.recycle();
+            //            mBitmap.recycle();
             checkedState = CheckedState.sort_downicon;
-            mBitmap = BitmapFactory.decodeResource(getResources(), sort_downicon);
+            textColor = ContextCompat.getColor(ctx, R.color.co15_syr);
+            //            mBitmap = BitmapFactory.decodeResource(getResources(), sort_downicon);
         } else {
-            mBitmap.recycle();
+            //            mBitmap.recycle();
             checkedState = CheckedState.sort_upicon;
-            mBitmap = BitmapFactory.decodeResource(getResources(), sort_upicon);
+            textColor = ContextCompat.getColor(ctx, R.color.co15_syr);
+            //            mBitmap = BitmapFactory.decodeResource(getResources(), sort_upicon);
         }
+        //        initPaint();
+        mTextPaint.setColor(textColor);
         invalidate();
     }
 
@@ -235,13 +242,15 @@ public class SortCheckBox extends View {
             canvas.translate(boxWidth / 2 - textLayout.getWidth() / 2, getHeight() / 2 - textLayout.getHeight() / 2);
             textLayout.draw(canvas);
             float left = (boxWidth - textLayout.getWidth()) / 2 + textWidth - 20;
-            float top = textLayout.getHeight() / 2 - mBitmap.getHeight() / 2;
-            canvas.drawBitmap(mBitmap, left, top, mTextPaint);
+//            float top = textLayout.getHeight() / 2 - mBitmap.getHeight() / 2;
+//            canvas.drawBitmap(mBitmap, left, top, mTextPaint);
+            float top = textLayout.getHeight() / 2;
         } else {
             canvas.drawText(text, originP.x, originP.y + textHeight - drawablePadding / 2, mTextPaint);
             float left = originP.x + textWidth + drawablePadding;
-            float top = getHeight() / 2 - mBitmap.getHeight() / 2;
-            canvas.drawBitmap(mBitmap, left, top, mTextPaint);
+//            float top = getHeight() / 2 - mBitmap.getHeight() / 2;
+//            canvas.drawBitmap(mBitmap, left, top, mTextPaint);
+            float top = getHeight() / 2;
         }
     }
 

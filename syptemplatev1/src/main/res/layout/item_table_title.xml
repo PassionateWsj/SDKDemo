@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ll_title"
-    android:layout_width="wrap_content"
-    android:layout_height="45dp"
-    android:gravity="center"
-    android:paddingLeft="16dp"
-    android:paddingTop="10dp"
-    android:background="@color/co10_syr"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/ll_title"
+              android:layout_width="wrap_content"
+              android:layout_height="45dp"
+              android:background="@color/co10_syr"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:paddingLeft="12.5dp"
+              android:paddingRight="12.5dp">
 
     <TextView
         android:id="@+id/tv_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:ellipsize="end"
+        android:gravity="center"
         android:maxLines="1"
         android:text="系统公告"
         android:textColor="@color/co6_syr"
-        android:textSize="15sp"
-        app:layout_goneMarginLeft="5dp" />
+        android:textSize="15sp"/>
 
     <View
         android:id="@+id/view_line"
-        android:layout_marginTop="10dp"
-        android:layout_width="16dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/background1_radius_boder_1" />
+        android:background="@drawable/background1_radius_boder_1"/>
 
 </LinearLayout>

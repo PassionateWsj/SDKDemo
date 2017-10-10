@@ -1,6 +1,7 @@
 package com.intfocus.syptemplatev1.adapter
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -34,8 +35,10 @@ class TableTitleAdapter(val context: Context,
             var noticeMenuData = datas!![position]
             holder.tvText.text = noticeMenuData.type
             if (noticeMenuData.isCheck) {
+                holder.tvText.setTextColor(ContextCompat.getColor(context, R.color.co1_syr))
                 holder.viewLine.visibility = View.VISIBLE
             } else {
+                holder.tvText.setTextColor(ContextCompat.getColor(context, R.color.co6_syr))
                 holder.viewLine.visibility = View.INVISIBLE
             }
             holder.llTitle.setOnClickListener { listener.itemClick(position) }

@@ -379,14 +379,15 @@ public class TemplateOne_UnitTablesContModeLibraryFragment extends BaseModeLibra
             lables.put(i, datas.get(i).main_data);
         }
 
-        int itemHeight = getResources().getDimensionPixelSize(R.dimen.size_table_small);
+        int itemHeight = getResources().getDimensionPixelSize(R.dimen.size_default);
         int dividerColor = getResources().getColor(R.color.co9);
-        int textColor = getResources().getColor(R.color.co3);
+        int textColor = getResources().getColor(R.color.co6_syr);
         tableValue = new TableValueView(ctx);
         tableValue.setItemHeight(itemHeight);
         tableValue.setHeaderLenghts(al_HeaderLenght);
+        tableValue.setTextSize(DisplayUtil.dip2px(getContext(), 12));
         tableValue.setTableValues(lables);
-        tableValue.setDeviderColor(dividerColor);
+        tableValue.setDividerColor(dividerColor);
         tableValue.setTextColor(textColor);
         fl_tableValue_container.addView(tableValue);
     }

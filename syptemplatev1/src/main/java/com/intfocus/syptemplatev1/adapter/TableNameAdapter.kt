@@ -1,7 +1,6 @@
 package com.intfocus.syptemplatev1.adapter
 
 import android.content.Context
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +18,8 @@ import org.json.JSONObject
 class TableNameAdapter(private val ctx: Context, ltdata: List<UnitTableEntity.TableRowEntity>) : BaseAdapter() {
     private var ltdata: List<UnitTableEntity.TableRowEntity>? = null
 
-    private val defauteColor: Int = ctx.resources.getColor(R.color.co3)
-    private val hasSubColor: Int = ctx.resources.getColor(R.color.co14)
+    private val defaultColor: Int = ctx.resources.getColor(R.color.co6)
+    private val hasSubColor: Int = ctx.resources.getColor(R.color.co15)
 
     init {
         setData(ltdata)
@@ -63,15 +62,15 @@ class TableNameAdapter(private val ctx: Context, ltdata: List<UnitTableEntity.Ta
         val entity = ltdata!![position]
 
         if (entity.sub_data == "{}") {
+            viewHolder.tv_name!!.setTextColor(defaultColor)
             viewHolder.img_dot!!.visibility = View.GONE
-            viewHolder.tv_name!!.setTextColor(defauteColor)
         } else {
             viewHolder.tv_name!!.setTextColor(hasSubColor)
-            viewHolder.img_dot!!.visibility = View.GONE
+            viewHolder.img_dot!!.visibility = View.VISIBLE
         }
 
         viewHolder.tv_name!!.text = JSONObject(entity.main_data[0]).getString("value")
-        viewHolder.tv_name!!.gravity = Gravity.LEFT
+//        viewHolder.tv_name!!.gravity = Gravity.LEFT
         return convertView
     }
 

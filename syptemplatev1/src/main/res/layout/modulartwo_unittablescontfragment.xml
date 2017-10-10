@@ -36,9 +36,8 @@
 
                 <com.intfocus.syptemplatev1.view.NotScrollListView
                     android:id="@+id/nslistView_unit_table_LineName"
-                    android:layout_width="0dp"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
                     android:dividerHeight="1px" />
 
                 <View
@@ -48,9 +47,8 @@
 
                 <com.intfocus.syptemplatev1.view.TableHorizontalScrollView
                     android:id="@+id/thscroll_unit_table_data"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="10"
                     android:fillViewport="true"
                     android:scrollbars="none">
 
