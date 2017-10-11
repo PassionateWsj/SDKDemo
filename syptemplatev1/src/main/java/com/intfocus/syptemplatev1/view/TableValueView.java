@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.support.v4.util.ArrayMap;
 import android.support.v4.util.SimpleArrayMap;
 import android.view.View;
@@ -16,8 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
-import static android.R.attr.value;
 
 /**
  * Created by zbaoliang on 17-5-21.
@@ -66,6 +63,7 @@ public class TableValueView extends View {
     public void setTextSize(int textSize) {
         this.textSize = textSize;
         textPaint.setTextSize(textSize);
+        invalidate();
     }
 
     public TableValueView(Context context) {
@@ -82,9 +80,10 @@ public class TableValueView extends View {
         dividerPaint.setStrokeWidth(1f);
 
         textPaint = new Paint(dividerPaint);
-        textPaint.setTextSize(DisplayUtil.dip2px(getContext(), textSize));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        textPaint.setTextSize(DisplayUtil.sp2px(getContext(), textSize));
+        textPaint.setTextAlign(Paint.Align.RIGHT);
+
+//        textPaint.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         textPaint.setColor(textColor);
         textPaint.setStrokeWidth(8);
     }
@@ -93,8 +92,8 @@ public class TableValueView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int totalWidth = 0;
-        for (Integer headerLenght : headerLenghts) {
-            totalWidth += headerLenght;
+        for (Integer headerLength : headerLenghts) {
+            totalWidth += headerLength;
         }
         setMeasuredDimension(totalWidth, tableValues.size() * itemHeight);
     }
@@ -174,11 +173,14 @@ public class TableValueView extends View {
             float width = upxPointLs + headerLenghts.get(i);
 
             float centerPwidth;
-            float currValue = (float) (headerLenghts.get(i) / 2);
-            if (i == 0)
-                centerPwidth = currValue;
-            else
-                centerPwidth = width - currValue;
+            float currValue = (float) ((headerLenghts.get(i)-DisplayUtil.dip2px(getContext(),20)) / 2);
+//            float currValue = (float) (headerLenghts.get(i) / 2);
+//            if (i == 0)
+//                centerPwidth = currValue;
+//            else
+//                centerPwidth = width -DisplayUtil.dip2px(getContext(), 15);
+//                centerPwidth = width ;
+                centerPwidth = width -DisplayUtil.dip2px(getContext(), 10);
             XAxesCenterPoint.put(i, centerPwidth);
 
             upxPointLs = width;

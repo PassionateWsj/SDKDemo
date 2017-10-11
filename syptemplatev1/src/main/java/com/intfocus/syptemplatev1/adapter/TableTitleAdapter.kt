@@ -38,7 +38,7 @@ class TableTitleAdapter(val context: Context,
                 holder.tvText.setTextColor(ContextCompat.getColor(context, R.color.co1_syr))
                 holder.viewLine.visibility = View.VISIBLE
             } else {
-                holder.tvText.setTextColor(ContextCompat.getColor(context, R.color.co6_syr))
+                holder.tvText.setTextColor(ContextCompat.getColor(context, R.color.co4_syr))
                 holder.viewLine.visibility = View.INVISIBLE
             }
             holder.llTitle.setOnClickListener { listener.itemClick(position) }

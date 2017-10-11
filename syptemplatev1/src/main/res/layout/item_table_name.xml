@@ -15,13 +15,13 @@
 
         <ImageView
             android:id="@+id/img_tableName_dot"
-            android:layout_width="@dimen/space_default_large_s"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginRight="5dp"
             android:scaleType="centerInside"
-            android:src="@drawable/graph_blackpot"
-            android:visibility="gone"/>
+            android:src="@drawable/icon_zuanqu"
+            android:visibility="visible"/>
 
         <TextView
             android:id="@+id/tv_tableName_value"

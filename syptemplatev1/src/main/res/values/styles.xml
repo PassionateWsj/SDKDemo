@@ -433,7 +433,7 @@
         <item name="android:ellipsize">end</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:textSize">@dimen/font_cont</item>
+        <item name="android:textSize">@dimen/font_small_m</item>
         <item name="android:textColor">@color/co6_syr</item>
         <item name="android:gravity">center_vertical</item>
     </style>

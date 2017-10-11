@@ -116,6 +116,7 @@ public class TemplateOne_UnitTablesContModeLibraryFragment extends BaseModeLibra
      * 最上层跟跟标签ID
      */
     public int suRootID;
+    private ArrayList<Integer> mColumnMaxWidths;
 
     @Override
     public Subject setSubject() {
@@ -294,13 +295,13 @@ public class TemplateOne_UnitTablesContModeLibraryFragment extends BaseModeLibra
             }
         }
 
-        ArrayList<Integer> mColumnMaxWidths = new ArrayList<Integer>();
+        mColumnMaxWidths = new ArrayList<Integer>();
         //初始化每列最大宽度
         for (int i = 0; i < lineData.size(); i++) {
             ArrayList<String> rowDatas = lineData.get(i);
             for (int j = 0; j < rowDatas.size(); j++) {
                 TextView textView = new TextView(ctx);
-                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
                 textView.setText(rowDatas.get(j));
                 if (i != 0) {
                     try {
@@ -315,7 +316,7 @@ public class TemplateOne_UnitTablesContModeLibraryFragment extends BaseModeLibra
                 //设置布局
                 LinearLayout.LayoutParams textViewParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-                textViewParams.setMargins(30, 30, 30, 30);
+                textViewParams.setMargins(DisplayUtil.dip2px(ctx, 10), 30, DisplayUtil.dip2px(ctx, 10), 30);
                 textView.setLayoutParams(textViewParams);
                 if (i == 0) {
                     mColumnMaxWidths.add(measureTextWidth(textView, rowDatas.get(j)));
@@ -335,6 +336,7 @@ public class TemplateOne_UnitTablesContModeLibraryFragment extends BaseModeLibra
             box.setText(header[i + 1]);
             box.setBoxWidth(DisplayUtil.dip2px(ctx, mColumnMaxWidths.get(i)));
             box.setTag(i + 1);
+            box.setTextSize(DisplayUtil.sp2px(getContext(), 11));
             box.setOnClickListener(listener);
             box.setOnSortViewSizeListener(this);
             linear_header.addView(box);
@@ -385,7 +387,7 @@ public class TemplateOne_UnitTablesContModeLibraryFragment extends BaseModeLibra
         tableValue = new TableValueView(ctx);
         tableValue.setItemHeight(itemHeight);
         tableValue.setHeaderLenghts(al_HeaderLenght);
-        tableValue.setTextSize(DisplayUtil.dip2px(getContext(), 12));
+        tableValue.setTextSize(DisplayUtil.sp2px(getContext(), 10));
         tableValue.setTableValues(lables);
         tableValue.setDividerColor(dividerColor);
         tableValue.setTextColor(textColor);

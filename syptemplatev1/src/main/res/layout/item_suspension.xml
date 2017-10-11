@@ -17,6 +17,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:textSize="11sp"
             android:ellipsize="end"
             android:maxLines="2"
             android:paddingLeft="@dimen/space_default"
