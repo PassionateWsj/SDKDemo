@@ -177,16 +177,17 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
 
         for (int i = 0; i < dataList.size(); i++) {
             int color;
-            if (orderColors == null || orderColors.length == 0)
+            if (orderColors == null || orderColors.length == 0) {
                 color = defaultColor;
-            else
+            } else {
                 color = orderColors[i];
+            }
 
-            if (mChartStyle == ChartStyle.LINE)
+            if (mChartStyle == ChartStyle.LINE) {
                 drawLine(canvas, paintCurve, i, color);
-            else if (mChartStyle == ChartStyle.BAR)
+            } else if (mChartStyle == ChartStyle.BAR) {
                 drawBAR(canvas, i, color);
-            else if (mChartStyle == ChartStyle.LINE_BAR) {
+            } else if (mChartStyle == ChartStyle.LINE_BAR) {
                 drawBAR(canvas, i, color);
                 drawLine(canvas, paintCurve, i, color);
             }
@@ -238,16 +239,18 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
             startX += xPoint + i * xScale;
 
             int color;
-            if (selectItem == i && (mChartStyle == ChartStyle.BAR || mChartStyle == ChartStyle.LINE_BAR))
+            boolean isBarChartSelected = selectItem == i && (mChartStyle == ChartStyle.BAR || mChartStyle == ChartStyle.LINE_BAR);
+            if (isBarChartSelected) {
                 color = blackColor;
-            else {
-                if (colorList == null)
+            } else {
+                if (colorList == null) {
                     color = defaultColor;
-                else {
-                    if (colorList == null || i > colorList.length - 1)
+                } else {
+                    if (colorList == null || i > colorList.length - 1) {
                         color = defaultColor;
-                    else
+                    } else {
                         color = getRelativeColor(colorList[i]);
+                    }
                 }
             }
             paint.setColor(color);
@@ -282,8 +285,9 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
      * @return
      */
     private int getRelativeColor(int index) {
-        if (orderColors == null || orderColors.length == 0 || orderColors.length < index - 1)
+        if (orderColors == null || orderColors.length == 0 || orderColors.length < index - 1) {
             return defaultColor;
+        }
         return orderColors[index];
     }
 
@@ -304,7 +308,7 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
 //            xPointLine = xPointLine - barWidth / 2 + dataIndex * barWidth;
 //        }
         for (int i = 0; i < loopingcont; i++) {
-            if (data[i] == 0f) {
+            if (i != 0 && data[i] == 0f) {
                 continue;
             }
             float yPoint = toY(data[i] - Float.parseFloat(yLabel[0]));
@@ -324,10 +328,11 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
         if (ratio == 1 && mChartStyle != ChartStyle.LINE_BAR) {
             for (int i = 0; i < loopingcont; i++) {
                 float yPointCircle;
-                if (i == 0)
+                if (i == 0) {
                     yPointCircle = toY(data[0] - Float.parseFloat(yLabel[0]));
-                else
+                } else {
                     yPointCircle = toY(data[i] - Float.parseFloat(yLabel[0]));
+                }
 
                 if (i == selectItem && data[i] != 0) {
                     paint_circle.setColor(drawColor);
@@ -386,8 +391,9 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
                         break;
                 }
 
-            } else
+            } else{
                 paintCurve.setColor(defaultColor);
+            }
             canvas.drawRect(rectF, paintCurve);
         }
     }
@@ -399,8 +405,9 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
         float y;
         try {
             y = yPoint - num * yScale;
-            if (num < 0)
+            if (num < 0){
                 y = Math.abs(y);
+            }
         } catch (Exception e) {
             return 0;
         }
@@ -428,8 +435,9 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
     private void onActionUpEvent(MotionEvent event) {
         boolean isValidTouch = validateTouch(event.getX(), event.getY());
         if (isValidTouch) {
-            if (listener != null)
+            if (listener != null){
                 listener.onPointClick(selectItem);
+            }
             invalidate();
         }
     }
@@ -459,8 +467,9 @@ public class CustomCurveChartV2 extends View implements ValueAnimator.AnimatorUp
             if (x > (xpoints.get(i) - barWidth) && x < (xpoints.get(i) + barWidth)) {
 
                 selectItem = i;
-                if (listener != null)
+                if (listener != null){
                     listener.onPointClick(selectItem);
+                }
                 return true;
             }
 //                    break;
